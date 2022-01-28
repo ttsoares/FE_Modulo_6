@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Show messages</title>
+  <!-- Bootstrap CSS -->
+  <link href="css/BootS/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/messages.css">
+</head>
+<body>
+
+  <div class="container-fluid">
+
+    <header class="header container-fluid d-flex flex-row ">
+      <h1 class="me-5">Your Messages</h1>
+      <span class="me-auto display-1" id="userName"></span>
+      <button type="button" class="ms-auto btn btn-outline-success rounded-pill" onclick="logout();">Log Out
+      </button>
+    </header>
+
+    <section class="row ms-3 mt-4 input-group">
+      <h2> Add new messages</h2>
+      <div class="col-3">
+        <input type="text" id="desCrip" class="form-control" placeholder="Description" aria-label="Description">
+      </div>
+      <div class="col-8">
+        <input type="text" id="detAil" class="form-control" placeholder="Details" aria-label="Details">
+      </div>
+      <div class="col-1">
+        <button class="btn btn-primary" onclick="saveData();">Save</button>
+      </div>
+    </section>
+
+    <main id="messages" class="mt-4"></main>
+  </div>
+
+  <!-- Modal EDIT -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered d-flex align-items-end">
+      <div class="modal-content bg-info p-2 text-white bg-opacity-75">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit the message</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="row ms-3 mt-4 input-group">
+            <div class="col-3">
+              <input type="text" id="edDes" class="form-control" placeholder="Description" aria-label="Description">
+            </div>
+            <div class="col-8">
+              <input type="text" id="edDet" class="form-control" placeholder="Details" aria-label="Details">
+            </div>
+            <div class="col-1">
+              <button class="btn btn-primary rounded-pill" data-bs-dismiss="modal" onclick="saveEdit();">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="empty_filed" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered d-flex align-items-end">
+      <div class="modal-content bg-info p-2 text-white bg-opacity-75">
+        <div class="modal-header">
+          <h5 class="modal-title" >Empty fields</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          One or more fields are empty.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered d-flex align-items-end">
+      <div class="modal-content bg-info p-2 text-white bg-opacity-75">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirm exclusion ?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="row ms-3 mt-4 input-group">
+            <div class="col-3">
+              <input type="text" id="remDes" class="form-control" aria-label="Description">
+            </div>
+            <div class="col-8">
+              <input type="text" id="remDet" class="form-control"  aria-label="Details">
+            </div>
+            <div class="col-1">
+              <button class="btn btn-primary rounded-pill" data-bs-dismiss="modal" onclick="saveRemove();">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script type="text/javascript" src="./js/BootS/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="./js/URL.js"></script>
+<script type="text/javascript" src="./js/md5.min.js"></script>
+<script type="text/javascript" src="./js/messages.js"></script>
+</html>

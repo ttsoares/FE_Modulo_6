@@ -1,0 +1,29 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Modulo 4 frontEnd",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ttsoares/FE_Modulo_4.git"
+  },
+  "keywords": [
+    "Modulo",
+    "4",
+    "frontend",
+    "growdev"
+  ],
+  "author": "Thomas T. Soares",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ttsoares/FE_Modulo_4/issues"
+  },
+  "homepage": "https://github.com/ttsoares/FE_Modulo_4#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}

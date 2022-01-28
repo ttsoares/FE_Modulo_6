@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="css/BootS/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/newuser.css">
+  <title>New user</title>
+</head>
+<body>
+
+  <header class="d-flex justify-content-center">
+    <h1 class="m-0">New User</h1>
+  </header>
+
+  <div class="btnBack">
+    <button type="button" class="btn btn-outline-success rounded-pill" onclick="logout();">Back
+    </button>
+  </div>
+
+  <section class="externa">
+    <div class="interna">
+      <form>
+        <label for="userName"><h5><u>User Name</u></h5></label>
+        <input type="text" class="form-control-plaintext" placeholder="Enter user name" id="userName">
+      <form >
+          <label for="passWord_1"><h5><u>Password</u></h5></label>
+        <input type="password" class="form-control-plaintext" placeholder="Enter password" id="passWord_1">
+      </form>
+      <form >
+        <label for="passWord_2"><h5><u>Password</u></h5></label>
+        <input type="password" class="form-control-plaintext" placeholder="Repeat password" id="passWord_2">
+      </form>
+      <div class="d-grid mt-3">
+        <button id="myBtn" class="btn btn-primary rounded-pill" onclick="NewUser();">SUBMIT</button>
+      </div>
+
+      <div id="div-clock" class="invisible position-absolute top-50 start-50 translate-middle">
+        <img class="clock" src="imgs/loading.jpg" alt="">
+      </div>
+
+      <h5 class="position-absolute bottom-0 start-50 translate-middle-x text-decoration-underline text-warning bg-dark ">User names letters must be between 'a' and 'z'</h5>
+
+    </div>
+  </section>
+
+  !-- Modal passwords not equal-->
+  <div class="modal fade" id="passModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered d-flex align-items-end">
+      <div class="modal-content bg-info p-2 text-white bg-opacity-75">
+        <div class="modal-header">
+          <h5 class="modal-title">Passwords are different !</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Those passwords you just wrote are not equal. Try again.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal empty field-->
+  <div class="modal fade" id="empty_field" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered d-flex align-items-end">
+      <div class="modal-content bg-info p-2 text-white bg-opacity-75">
+        <div class="modal-header">
+          <h5 class="modal-title" >Empty fields</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          One or more fields are empty.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal User already exist-->
+  <div class="modal fade" id="user_exists" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered d-flex align-items-end">
+      <div class="modal-content bg-info p-2 text-white bg-opacity-75">
+        <div class="modal-header">
+          <h5 class="modal-title" >User name already taken.</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Choose a different name.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Success-->
+  <div class="modal fade" id="success" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered d-flex align-items-end">
+      <div class="modal-content bg-info p-2 text-white bg-opacity-75">
+        <div class="modal-header">
+          <h5 class="modal-title" >Done !</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          New user added successfully.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  onclick="logout();" >Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Failure-->
+  <div class="modal fade" id="failure" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered d-flex align-items-end">
+      <div class="modal-content bg-info p-2 text-white bg-opacity-75">
+        <div class="modal-header">
+          <h5 class="modal-title" >E R R O R   ! !</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Some invalid chacarter was used in the username
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  onclick="logout();" >Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script src="./js/BootS/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="./js/URL.js"></script>
+<script type="text/javascript" src="./js/md5.min.js"></script>
+<script src="./js/newuser.js"></script>
+</html>

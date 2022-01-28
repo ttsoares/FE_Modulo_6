@@ -1,0 +1,13 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  margin:0;
+  background-image: url(../imgs/about.jpg);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+span {
+  color: red;
+}
