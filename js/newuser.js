@@ -47,7 +47,7 @@ async function criaUser(userName, password) {
 
     console.log(userName, password)
 
-    const resp = await axios.post(`${url}/user/store`, {name: userName, password: password});
+    await axios.post(`${url}/user/store`, {name: userName, password: password});
 
     clockAmin.classList.remove("visible");
     clockAmin.classList.add("invisible");

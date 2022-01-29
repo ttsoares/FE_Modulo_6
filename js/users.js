@@ -45,7 +45,7 @@ async function show_users () {
 
 async function remove() {
   id = this.getAttribute('id');
-  id = +id.slice(0,-1) //  remove the "D" from id
+  id = id.slice(0,35) //  remove the "D" from the end of 'uid'
 
   clockAnim.classList.remove("invisible");
   clockAnim.classList.add("visible");
@@ -66,7 +66,7 @@ async function remove() {
 // Start the edit process by getting user data
 async function edit() {
   id = this.getAttribute('id');
-  id = +id.slice(0,-1); //  remove the "E" from id
+  id = id.slice(0,36); //  remove the "E" from the end of 'uid'
 
   await axios.get(`${url}/user/${id}`)
     .then(function (response) {

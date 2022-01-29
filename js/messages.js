@@ -39,6 +39,7 @@ async function show_msgs () {
     // Assign click events to the HTML rows
     const delBtns = document.getElementsByClassName('remove');
     const editBtns = document.getElementsByClassName('edit');
+
     for (var i=0; i < delBtns.length; i++) {
      delBtns[i].addEventListener('click', remove);
      editBtns[i].addEventListener('click', edit);
@@ -48,10 +49,12 @@ async function show_msgs () {
 async function remove() {
   // get the content (number) to fill variable 'id' using 'id' at the HTML
   // this will be the same 'id' in the SQL table 'uid' colummn
-  id = this.getAttribute('id');
-  id = +id.slice(0,-1) //  remove the "D" from id
 
-  await axios.delete(`${url}/user/${usrIndice}/message/${id}`)
+  // Novo tipo de id : c2da595c-9b2d-4b1f-9f4f-62836c4361d8
+  id = this.getAttribute('id');
+  id = id.slice(0,36) //  remove the "D" from the end of 'uid'
+
+  await axios.delete(`${url}/message/${id}`)
     .then(function (response) {
     })
     .catch(function (error) {
@@ -64,11 +67,13 @@ async function remove() {
 // start edition process
 // get the content (number) to fill variable 'id' using 'id' at the HTML
 // this will be the same 'id' in the SQL table 'uid' colummn
+
+// Novo tipo de id : c2da595c-9b2d-4b1f-9f4f-62836c4361d8
 async function edit() {
   id = this.getAttribute('id');
-  id = +id.slice(0,-1); //  remove the "E" from id
+  id = id.slice(0,36); //  remove the "E" from the end of 'uid'
 
-  await axios.get(`${url}/user/${usrIndice}/message/${id}`)
+  await axios.get(`${url}/message/${id}`)
     .then(function (response) {
       message = response.data
 
@@ -104,7 +109,7 @@ async function saveEdit() {
     return
   }
 
-  await axios.put(`${url}/user/${usrIndice}/message/${id}`, {
+  await axios.put(`${url}/message/${id}`, {
     description: idDescri,
     details: idDetail
   })
