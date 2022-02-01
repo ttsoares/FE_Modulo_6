@@ -45,7 +45,7 @@ async function show_users () {
 
 async function remove() {
   id = this.getAttribute('id');
-  id = id.slice(0,35) //  remove the "D" from the end of 'uid'
+  id = id.slice(0,36) //  remove the "D" from the end of 'uid'
 
   clockAnim.classList.remove("invisible");
   clockAnim.classList.add("visible");
