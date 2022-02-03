@@ -31,20 +31,23 @@ async function show_msgs () {
       html = response.data  // HTML made by backend EJS
     })
     .catch(function (error) {
-      console.log("Messages not found")
+      html = false;
+      console.log("Messages not found");
     })
 
-    document.getElementById('messages').innerHTML = html
+    if(html) {
+      document.getElementById('messages').innerHTML = html
 
-    // Assign click events to the HTML rows
-    const delBtns = document.getElementsByClassName('remove');
-    const editBtns = document.getElementsByClassName('edit');
+      // Assign click events to the HTML rows
+      const delBtns = document.getElementsByClassName('remove');
+      const editBtns = document.getElementsByClassName('edit');
 
-    for (var i=0; i < delBtns.length; i++) {
-     delBtns[i].addEventListener('click', remove);
-     editBtns[i].addEventListener('click', edit);
-    };
-}
+      for (var i=0; i < delBtns.length; i++) {
+       delBtns[i].addEventListener('click', remove);
+       editBtns[i].addEventListener('click', edit);
+      };
+  };
+};
 
 async function remove() {
   // get the content (number) to fill variable 'id' using 'id' at the HTML
@@ -60,8 +63,8 @@ async function remove() {
     .catch(function (error) {
       console.log("Delete message error")
     })
-
-  show_msgs()
+  location.reload();
+  show_msgs();
 }
 
 // start edition process
@@ -114,7 +117,8 @@ async function saveEdit() {
     details: idDetail
   })
   .then(function (response) {
-      messages = response.data
+      //messages = response.data
+      console.log(response.data);
   })
   .catch(function (error) {
       console.log("edit message error")
@@ -145,7 +149,8 @@ async function saveData() {
     details: detailNew
   })
   .then(function (response) {
-    messages = response.data
+    console.log(response.data);
+    //messages = response.data
   })
   .catch(function (error) {
     console.log("message or user not found")

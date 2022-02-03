@@ -26,21 +26,24 @@ async function show_users () {
       html = response.data  // HTML made by backend EJS
     })
     .catch(function (error) {
+      html = false;
       console.log("users not found")
     })
 
     clockAnim.classList.remove("visible");
     clockAnim.classList.add("invisible");
 
-    document.getElementById('allusers').innerHTML = html
+    if (html) {
+      document.getElementById('allusers').innerHTML = html;
 
-    // Assign click events to the HTML rows
-    const delBtns = document.getElementsByClassName('remove');
-    const editBtns = document.getElementsByClassName('edit');
-    for (var i=0; i < delBtns.length; i++) {
-     delBtns[i].addEventListener('click', remove);
-     editBtns[i].addEventListener('click', edit);
-    };
+      // Assign click events to the HTML rows
+      const delBtns = document.getElementsByClassName('remove');
+      const editBtns = document.getElementsByClassName('edit');
+      for (var i=0; i < delBtns.length; i++) {
+       delBtns[i].addEventListener('click', remove);
+       editBtns[i].addEventListener('click', edit);
+      };
+    }
 }
 
 async function remove() {
@@ -52,6 +55,7 @@ async function remove() {
 
   await axios.delete(`${url}/user/${id}`)
     .then(function (response) {
+      console.log(response);
     })
     .catch(function (error) {
       console.log("Erro ao apagar usuário")
@@ -60,7 +64,8 @@ async function remove() {
     clockAnim.classList.remove("visible");
     clockAnim.classList.add("invisible");
 
-  show_users()
+  location.reload();
+  show_users();
 }
 
 // Start the edit process by getting user data
